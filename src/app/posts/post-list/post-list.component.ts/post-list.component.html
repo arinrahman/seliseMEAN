@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Product Data</h2>
+
+<table>
+  <tr>
+    <th>Product Name</th>
+    <th>Product Code</th>
+    <th>Product Category</th>
+    <th>Product Price</th>
+    <th>Product Description</th>
+    <th>Is Best Achieved</th>
+    <th>Create Date</th>
+    <th>Product Origin</th>
+
+  </tr>
+  <tr *ngFor="let post of posts" >
+    <td> {{post.title}}</td>
+    <td>{{post.content}}</td>
+    <td>{{post.selectedValue}}</td>
+    <td>{{post.price}}</td>
+    <td>{{post.desc}}</td>
+    <td>{{post.favoriteSeason}}</td>
+    <td>{{post.startDate}}</td>
+    <td>{{post.selectedOrigin}}</td>
+  </tr>
+
+</table>
+
+</body>
+</html>
+

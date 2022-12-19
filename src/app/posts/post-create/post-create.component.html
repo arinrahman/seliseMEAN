@@ -1,0 +1,121 @@
+<mat-card>
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+    <div class="form-tog">
+      <div> <!--Title-->
+        <mat-form-field>
+          <input matInput
+           type="text"
+           name="title"
+            ngModel
+            placeholder="Enter Product Name"
+            required
+            minlength="3"
+            maxlength="50"
+            #title="ngModel"
+            >
+            <mat-error *ngIf="title.invalid">Enter Product Name</mat-error>
+        </mat-form-field>
+        <br>
+        <!--Content-->
+        <mat-form-field>
+          <textarea matInput
+           rows="4"
+           name="content"
+           ngModel
+           placeholder="Enter Product Code"
+           required
+           #content="ngModel"
+           minlength="3"
+            maxlength="50"
+           >
+          </textarea>
+          <mat-error *ngIf="content.invalid">Enter Product Code</mat-error>
+        </mat-form-field>
+        <br>
+        <!--Category-->
+        <mat-form-field>
+          <mat-label>Product Category</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="selectedValue" required>
+            <mat-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</mat-option>
+          </mat-select>
+
+
+        </mat-form-field>
+        <br>
+        <!--Price-->
+        <mat-form-field>
+         <mat-label>Price in BDT</mat-label>
+          <input matInput
+           type="number"
+           name="price"
+            ngModel
+            placeholder="Enter Product Price"
+            required
+            #number="ngModel"
+            >
+            <mat-error *ngIf="title.invalid">Enter Product Price</mat-error>
+        </mat-form-field>
+        <br></div>
+        <div><!--Description-->
+          <mat-form-field>
+            <textarea matInput
+             rows="4"
+             name="desc"
+             ngModel
+             placeholder="Enter Product Description"
+
+             #desc="ngModel"
+             minlength="3"
+              maxlength="250">
+            </textarea>
+            </mat-form-field>
+            <!--IsBestAchieved-->
+            <br>
+
+
+              <mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason" name="favoriteSeason" >
+                <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                  {{season}}
+                </mat-radio-button>
+              </mat-radio-group>
+
+
+
+          <!--Created Date-->
+          <br>
+          <mat-form-field>
+            <input matInput  [matDatepicker]="myDatePicker" [(ngModel)]="startDate" required name="startDate" >
+            <mat-label>Set Creation Date</mat-label>
+            <mat-datepicker-toggle [for]="myDatePicker" matSuffix  ></mat-datepicker-toggle>
+            <mat-datepicker #myDatePicker></mat-datepicker>
+
+
+           </mat-form-field>
+
+           <br>
+                 <!--Origin-->
+
+    <mat-form-field>
+      <mat-label>Product Origin</mat-label>
+      <mat-select [(ngModel)]="selectedOrigin" name="selectedOrigin" required>
+        <mat-option *ngFor="let place of places" [value]="place.value">{{place.viewValue}}</mat-option>
+      </mat-select>
+
+
+    </mat-form-field>
+          </div>
+
+
+
+
+
+    </div>
+
+    <!--Submit Button-->
+    <br>
+
+    <button mat-raised-button mat-button color="accent" type="submit">Add Product</button>
+  </form>
+</mat-card>
+
+
