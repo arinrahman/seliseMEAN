@@ -28,7 +28,7 @@ export class PostListComponent implements OnInit, OnDestroy{
 
 
 
-displayedColumns: string[] = ['title', 'content', 'selectedValue', 'price', 'desc', 'favoriteSeason', 'startDate', 'selectedOrigin', 'selectedDelete'];
+displayedColumns: string[] = ['title', 'content', 'selectedValue', 'price', 'desc', 'favoriteSeason', 'startDate', 'selectedOrigin', 'selectedDelete', 'selectedEdit'];
 
 
 posts: Post[]=[];

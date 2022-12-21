@@ -50,6 +50,7 @@ constructor(public postsService: PostsService){
     }
 
     this.postsService.addPost(form.value.title,form.value.content, form.value.startDate, form.value.selectedValue, form.value.price, form.value.desc, form.value.selectedOrigin, form.value.favoriteSeason);
+    alert("You succesfully added a product!")
 
   }
 

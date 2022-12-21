@@ -24,6 +24,8 @@ import {MatSortModule} from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HeaderComponent } from './header/header.component';
+import { AllComponent } from './all/all.component';
+
 
 
 
@@ -40,7 +42,8 @@ import { HeaderComponent } from './header/header.component';
 
     HeaderComponent,
 
-    routingComponents
+    routingComponents,
+    AllComponent
 
   ],
   imports: [
@@ -62,7 +65,7 @@ import { HeaderComponent } from './header/header.component';
     MatPaginatorModule,
     MatSortModule,
     HttpClientModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
 
 
 
