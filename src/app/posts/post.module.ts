@@ -1,4 +1,5 @@
 export interface Post{
+  id:string;
   title: string;
   content: string;
   startDate: Date;
@@ -7,5 +8,6 @@ export interface Post{
   desc: string;
   selectedOrigin:string;
   favoriteSeason:string;
+
 
 }

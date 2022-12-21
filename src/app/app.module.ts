@@ -19,6 +19,11 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import{MatRadioModule} from'@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 
@@ -47,6 +52,10 @@ import {MatTableModule} from '@angular/material/table';
     MatCheckboxModule,
     MatRadioModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    HttpClientModule
+
 
 
 

@@ -2,6 +2,10 @@ import { Component, OnDestroy, OnInit} from "@angular/core";
 import { Post } from "../../post.module";
 import { PostsService } from "../../posts.service";
 import{Subscription} from 'rxjs';
+import { MatPaginator} from "@angular/material/paginator";
+import { MatSort} from "@angular/material/sort";
+
+
 
 
 
@@ -24,6 +28,9 @@ export class PostListComponent implements OnInit, OnDestroy{
 
 
 
+displayedColumns: string[] = ['title', 'content', 'selectedValue', 'price', 'desc', 'favoriteSeason', 'startDate', 'selectedOrigin'];
+
+
 posts: Post[]=[];
 private postsSub: Subscription;
 
@@ -31,12 +38,13 @@ constructor(public postsService: PostsService){
 
 }
 ngOnInit(){
-  this.posts= this.postsService.getPosts();
+  this.postsService.getPosts();
   this.postsSub= this.postsService.getPostUpdateListener()
   .subscribe((posts: Post[])=>
   {
     this.posts= posts;
   });
+
 
 
 

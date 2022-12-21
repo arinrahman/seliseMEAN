@@ -24,7 +24,7 @@ export class PostCreateComponent{
   selectedValue: string;
   selectedOrigin:string;
   favoriteSeason: string;
-  seasons: string[] = ['Pickup', 'Delivery'];
+  seasons: string[] = ['Day', 'Night'];
 
   foods: Food[] = [
     {value: 'makeup', viewValue: 'Makeup'},

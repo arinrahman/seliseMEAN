@@ -1,53 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+<p *ngIf="posts.length<=0" class="info-text mat-body-1">No products added yet!</p>
+<div class="mat-elevation-z8"  *ngIf="posts.length>0">
+  <mat-label>Product Data</mat-label>
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+  <table mat-table [dataSource]="posts" matSort>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</th>
+      <td mat-cell *matCellDef="let post" > {{post.title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="content">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Code </th>
+      <td mat-cell *matCellDef="let post"> {{post.content}}</td>
+    </ng-container>
+    <ng-container matColumnDef="selectedValue">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Category</th>
+      <td mat-cell *matCellDef="let post" >{{post.selectedValue}}</td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Price</th>
+      <td mat-cell *matCellDef="let post of posts" >{{post.price}}</td>
+    </ng-container>
+    <ng-container matColumnDef="desc">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Description</th>
+      <td mat-cell *matCellDef="let post" >{{post.desc}}</td>
+    </ng-container>
+    <ng-container matColumnDef="favoriteSeason">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Is Best Achieved</th>
+      <td mat-cell *matCellDef="let post" >{{post.favoriteSeason}} </td>
+    </ng-container>
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Creation Date</th>
+      <td mat-cell *matCellDef="let post" >{{post.startDate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="selectedOrigin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Origin</th>
+      <td mat-cell *matCellDef="let post" >{{post.selectedOrigin}}</td>
+    </ng-container>
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-</head>
-<body>
+    <ng-container matColumnDef="selectedEdit">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit Product</th>
+      <td mat-cell *matCellDef="let post" ><button mat-button color="primary">EDIT</button></td>
+    </ng-container>
 
-<h2>Product Data</h2>
+    <ng-container matColumnDef="selectedDelete">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete Product</th>
+      <td mat-cell *matCellDef="let post" ><button mat-button color="warn">DELETE</button></td>
+    </ng-container>
 
-<table>
-  <tr>
-    <th>Product Name</th>
-    <th>Product Code</th>
-    <th>Product Category</th>
-    <th>Product Price</th>
-    <th>Product Description</th>
-    <th>Is Best Achieved</th>
-    <th>Create Date</th>
-    <th>Product Origin</th>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let post; columns: displayedColumns;"></tr>
 
-  </tr>
-  <tr *ngFor="let post of posts" >
-    <td> {{post.title}}</td>
-    <td>{{post.content}}</td>
-    <td>{{post.selectedValue}}</td>
-    <td>{{post.price}}</td>
-    <td>{{post.desc}}</td>
-    <td>{{post.favoriteSeason}}</td>
-    <td>{{post.startDate}}</td>
-    <td>{{post.selectedOrigin}}</td>
-  </tr>
+      </table>
 
-</table>
 
-</body>
-</html>
+
+</div>
+
 
