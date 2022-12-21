@@ -2,7 +2,7 @@
 <div class="mat-elevation-z8"  *ngIf="posts.length>0" style="background-color: rgb(127, 159, 255);">
 
 
-    <button mat-raised-button color="accent" >Add Product</button>
+    <button mat-raised-button color="accent" routerLink="/post-create" >Add Product</button>
 
 
   <table mat-table [dataSource]="posts" matSort style="background-color: rgb(215, 214, 246);">
