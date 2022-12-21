@@ -49,13 +49,20 @@ app.post("/api/posts", (req,res,next)=>
 });
 
 app.get('/api/posts',(req,res,next)=>
-{ 
-  res.status(200).json(
-    {
-      message: "post fetched success",
-      posts:posts
-    }
-  );
+{ Post.find()
+  .then(documents=>{
+
+    res.status(200).json(
+      {
+        message: "post fetched success",
+        posts:documents
+      }
+    );
+
+  });
+
+
+
 
 });
 module.exports= app;
