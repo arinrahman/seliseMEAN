@@ -28,7 +28,7 @@ export class PostListComponent implements OnInit, OnDestroy{
 
 
 
-displayedColumns: string[] = ['title', 'content', 'selectedValue', 'price', 'desc', 'favoriteSeason', 'startDate', 'selectedOrigin'];
+displayedColumns: string[] = ['title', 'content', 'selectedValue', 'price', 'desc', 'favoriteSeason', 'startDate', 'selectedOrigin', 'selectedDelete'];
 
 
 posts: Post[]=[];
@@ -49,11 +49,15 @@ ngOnInit(){
 
 
 }
+onDelete(postId:string){
+  this.postsService.deletePost(postId);
 
+}
 ngOnDestroy(): void {
   this.postsSub.unsubscribe();
 
 }
+
 
 
 }

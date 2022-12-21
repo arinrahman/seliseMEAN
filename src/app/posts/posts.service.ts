@@ -13,12 +13,12 @@ export class PostsService
   constructor(private http: HttpClient){}
 
   getPosts(){
-    this.http.get<{message:string, posts:Post[]}>('http://localhost:3000/api/posts')
+    this.http.get<{message:string, posts:any}>('http://localhost:3000/api/posts')
     .pipe(map((postData)=>{
       return postData.posts.map(post=>{
         return{
 
-          id:post.id,
+          id:post._id,
           title: post.title,
           content: post.content,
           startDate: post.startDate,
@@ -28,7 +28,8 @@ export class PostsService
           selectedOrigin:post.selectedOrigin,
           favoriteSeason: post.favoriteSeason
 
-        };});
+        };
+      });
 
     }))
     .subscribe((transformedPosts)=>{
@@ -52,5 +53,12 @@ export class PostsService
     });
 
 
+  }
+  deletePost(postId:string){
+    this.http.delete("http://localhost:3000/api/posts/"+ postId)
+    .subscribe(
+      ()=>
+      {console.log("Deleted!");}
+    );
   }
 }

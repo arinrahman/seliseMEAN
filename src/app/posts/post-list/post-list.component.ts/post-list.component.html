@@ -2,7 +2,7 @@
 <div class="mat-elevation-z8"  *ngIf="posts.length>0" style="background-color: rgb(127, 159, 255);">
 
 
-    <button mat-raised-button color="accent" routerLink="/post-create">Add Product</button>
+    <button mat-raised-button color="accent" >Add Product</button>
 
 
   <table mat-table [dataSource]="posts" matSort style="background-color: rgb(215, 214, 246);">
@@ -20,7 +20,7 @@
     </ng-container>
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Price</th>
-      <td mat-cell *matCellDef="let post of posts" >{{post.price}}</td>
+      <td mat-cell *matCellDef="let post" >{{post.price}}</td>
     </ng-container>
     <ng-container matColumnDef="desc">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Description</th>
@@ -46,7 +46,7 @@
 
     <ng-container matColumnDef="selectedDelete">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete Product</th>
-      <td mat-cell *matCellDef="let post" ><button mat-button color="warn">DELETE</button></td>
+      <td mat-cell *matCellDef="let post" ><button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

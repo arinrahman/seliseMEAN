@@ -11,7 +11,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-import { HeaderComponent } from './header/header.component';
+
 import {MatToolbarModule} from '@angular/material/toolbar';
 import{MatExpansionModule} from '@angular/material/expansion';
 import { PostListComponent } from './posts/post-list/post-list.component.ts/post-list.component';
@@ -23,6 +23,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -35,6 +36,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
   declarations: [
     AppComponent,
     PostListComponent,
+    PostCreateComponent,
 
     HeaderComponent,
 

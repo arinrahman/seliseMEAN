@@ -8,6 +8,7 @@ export interface Post{
   desc: string;
   selectedOrigin:string;
   favoriteSeason:string;
+  
 
 
 }
