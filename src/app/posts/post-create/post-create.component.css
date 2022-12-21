@@ -5,10 +5,11 @@ mat-card
 }
 textarea{
   width:100% ;
+  background-color: rgb(252, 231, 235);
 }
 .form-tog{
   display: flex;
-  justify-content: space-between;
+
 
 }
 mat-form-field{

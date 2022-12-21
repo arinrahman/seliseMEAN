@@ -1,6 +1,10 @@
 <mat-card>
   <form (submit)="onAddPost(postForm)" #postForm="ngForm">
-    <div class="form-tog">
+    <div style="display: flex; justify-content: space-between; background-color: rgb(253, 208, 216)">
+      <mat-label style="color: brown;font-size: 22px; ;">Form For Adding New Products to Product Data Table</mat-label>
+    <button mat-raised-button color="warn" routerLink="/post-list">Exit</button>
+    </div>
+    <div class="form-tog" style="background-color: rgb(246, 233, 236);">
       <div> <!--Title-->
         <mat-form-field>
           <input matInput
@@ -114,7 +118,7 @@
     <!--Submit Button-->
     <br>
 
-    <button mat-raised-button mat-button color="accent" type="submit">Add Product</button>
+    <button mat-raised-button mat-button color="accent" type="submit">Add</button>
   </form>
 </mat-card>
 

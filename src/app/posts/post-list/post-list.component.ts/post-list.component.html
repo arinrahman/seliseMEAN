@@ -1,8 +1,11 @@
 <p *ngIf="posts.length<=0" class="info-text mat-body-1">No products added yet!</p>
-<div class="mat-elevation-z8"  *ngIf="posts.length>0">
-  <mat-label>Product Data</mat-label>
+<div class="mat-elevation-z8"  *ngIf="posts.length>0" style="background-color: rgb(127, 159, 255);">
 
-  <table mat-table [dataSource]="posts" matSort>
+
+    <button mat-raised-button color="accent" routerLink="/post-create">Add Product</button>
+
+
+  <table mat-table [dataSource]="posts" matSort style="background-color: rgb(215, 214, 246);">
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</th>
       <td mat-cell *matCellDef="let post" > {{post.title}} </td>
