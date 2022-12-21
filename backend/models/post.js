@@ -11,4 +11,4 @@ const postSchema =mongoose.Schema({
   favoriteSeason:{type: String, required: true},
 });
 
-mongoose.model('Post', postSchema);
+module.exports= mongoose.model('Post', postSchema);
