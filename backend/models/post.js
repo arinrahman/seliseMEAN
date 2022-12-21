@@ -10,3 +10,5 @@ const postSchema =mongoose.Schema({
   selectedOrigin:{type: String, required: true},
   favoriteSeason:{type: String, required: true},
 });
+
+mongoose.model('Post', postSchema);
