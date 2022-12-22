@@ -36,6 +36,7 @@ export class PostCreateComponent{
     {value: 'USA', viewValue: 'USA'},
 
   ];
+  
 
 
 
