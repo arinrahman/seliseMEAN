@@ -7,7 +7,8 @@ import { PostListComponent } from './posts/post-list/post-list.component.ts/post
 const routes: Routes = [
   {path:'post-create', component: PostCreateComponent},
   {path:'post-list', component: PostListComponent},
-  {path:'header', component:HeaderComponent}
+  {path:'header', component:HeaderComponent},
+  {path:'edit/:postId', component: PostCreateComponent}
 ];
 
 @NgModule({
@@ -15,4 +16,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents=[PostCreateComponent, PostListComponent, HeaderComponent];
+

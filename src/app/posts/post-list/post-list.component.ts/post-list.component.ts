@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit} from "@angular/core";
 import { Post } from "../../post.module";
 import { PostsService } from "../../posts.service";
 import{Subscription} from 'rxjs';
-import { MatPaginator} from "@angular/material/paginator";
+import { MatPaginator, PageEvent} from "@angular/material/paginator";
 import { MatSort} from "@angular/material/sort";
 
 
@@ -32,6 +32,8 @@ displayedColumns: string[] = ['title', 'content', 'selectedValue', 'price', 'des
 
 
 posts: Post[]=[];
+totalPosts=50;
+postsPerPage=10;
 private postsSub: Subscription;
 
 constructor(public postsService: PostsService){
@@ -56,6 +58,9 @@ onDelete(postId:string){
 ngOnDestroy(): void {
   this.postsSub.unsubscribe();
 
+}
+onChangedPage(pageData:PageEvent){
+  console.log(pageData);
 }
 
 
