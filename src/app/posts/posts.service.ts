@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import{map} from 'rxjs/operators'
 
 import { Post } from "./post.module";
+import { response } from "express";
 @Injectable({providedIn:'root'})
 export class PostsService
 {
@@ -64,5 +65,45 @@ export class PostsService
     this.postUpdated.next([...this.posts]);
   }
     );
+  }
+  getPost(id:string){
+    return this.http.get<{_id:string, title:string, content:string, startDate: Date, selectedValue:string, price:number, desc:string, selectedOrigin:string, favoriteSeason:string}>("http://localhost:3000/api/posts/"+ id);
+  }
+  updatePost(  id:string,
+    title: string,
+    content: string,
+    startDate: Date,
+    selectedValue:string,
+    price:number,
+    desc: string,
+    selectedOrigin:string,
+    favoriteSeason:string){
+
+      const post: Post={
+        id:id,
+        title:title,
+        content: content,
+        startDate: startDate,
+        selectedValue: selectedValue,
+        price:price,
+        selectedOrigin: selectedOrigin,
+        desc:desc,
+        favoriteSeason:favoriteSeason
+
+      };
+      this.http.put("http://localhost:3000/api/posts/"+id,post)
+      .subscribe(
+        response=>{
+          const updatedPosts=[...this.posts];
+          const oldPostIndex= updatedPosts.findIndex(
+            p=>p.id===post.id
+          );
+          updatedPosts[oldPostIndex]= post;
+          this.posts=updatedPosts;
+          this.postUpdated.next([...this.posts]);
+
+        }
+      );
+
   }
 }

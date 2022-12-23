@@ -1,5 +1,7 @@
-import { Component, EventEmitter} from "@angular/core";
+import { Component, EventEmitter, OnInit} from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Post } from "../post.module";
 import { PostsService } from "../posts.service";
 interface Food {
   value: string;
@@ -17,13 +19,16 @@ interface Place {
   styleUrls: ['./post-create.component.css']
 })
 
-export class PostCreateComponent{
+export class PostCreateComponent implements OnInit{
   labelPosition: 'before' | 'after' = 'after';
-
   startDate = new Date();
   selectedValue: string;
   selectedOrigin:string;
   favoriteSeason: string;
+  private mode='post-create';
+  private postId:string;
+  post: Post;
+
   seasons: string[] = ['Day', 'Night'];
 
   foods: Food[] = [
@@ -36,26 +41,51 @@ export class PostCreateComponent{
     {value: 'USA', viewValue: 'USA'},
 
   ];
-  
-
-
-
-
-
-constructor(public postsService: PostsService){
+constructor(public postsService: PostsService, public route: ActivatedRoute){
 
 }
-  onAddPost(form: NgForm){
+ngOnInit(){
+  this.route.paramMap.subscribe((paramMap: ParamMap)=>{
+    if(paramMap.has('postId')){
+      this.mode='edit';
+      this.postId = paramMap.get('postId');
+      this.postsService.getPost(this.postId).subscribe(postData=>
+   {
+    this.post={
+      id: postData._id,
+      title: postData.title,
+      content: postData.content,
+      selectedOrigin: postData.selectedOrigin,
+      selectedValue:postData.selectedValue,
+      price: postData.price,
+      desc: postData.desc,
+      startDate: postData.startDate,
+      favoriteSeason: postData.favoriteSeason
+
+    };
+   }     );
+    }else{
+      this.mode = 'post-create';
+      this.postId = null;
+    }
+  });
+
+}
+  onSavePost(form: NgForm)
+  {
     if(form.invalid){
       return;
     }
+     if(this.mode==="post-create")
+    {
+      this.postsService.addPost(form.value.title,form.value.content, form.value.startDate, form.value.selectedValue, form.value.price, form.value.desc, form.value.selectedOrigin, form.value.favoriteSeason);
+      alert("You succesfully added a product!")
 
-    this.postsService.addPost(form.value.title,form.value.content, form.value.startDate, form.value.selectedValue, form.value.price, form.value.desc, form.value.selectedOrigin, form.value.favoriteSeason);
-    alert("You succesfully added a product!")
-
+    }
+    else{
+      this.postsService.updatePost(this.postId, form.value.title,form.value.content, form.value.startDate, form.value.selectedValue, form.value.price, form.value.desc, form.value.selectedOrigin, form.value.favoriteSeason);
+      alert("You succesfully editted a product!")
+    }
 
   }
-
-
-
 }
