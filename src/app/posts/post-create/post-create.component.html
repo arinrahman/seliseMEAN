@@ -6,7 +6,7 @@
       <button mat-raised-button color="warn" routerLink="/post-list" >Exit</button>
       </div>
       <div class="form-tog" style="background-color: rgb(246, 233, 236);">
-        <div> <!--Title-->
+        <div>
           <mat-form-field>
             <mat-label>Product Name</mat-label>
             <input matInput
@@ -62,7 +62,8 @@
               >
               <mat-error *ngIf="title.invalid">Enter Product Price</mat-error>
           </mat-form-field>
-          <br></div>
+          <br>
+        </div>
           <div><!--Description-->
             <mat-form-field>
               <mat-label>Product Description</mat-label>
@@ -111,16 +112,27 @@
         <mat-select [ngModel]="post?.selectedOrigin" #selectedOrigin="ngModel" name="selectedOrigin">
           <mat-option *ngFor="let place of places" [value]="place.value">{{place.viewValue}}</mat-option>
         </mat-select>
-
-
       </mat-form-field>
-            </div>
+
+      <mat-form-field>
+        <mat-label>Image URL</mat-label>
+        <input matInput
+         type="text"
+         name="imageURL"
+          [ngModel]="post?.imageURL">
+          </mat-form-field>
+
+
+
+
 
 
 
 
 
       </div>
+
+    </div>
 
       <!--Submit Button-->
       <br>

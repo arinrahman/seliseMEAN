@@ -26,6 +26,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HeaderComponent } from './header/header.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import{ProductCreateComponent} from './posts/product-create/product-create.component';
+
+
 
 
 
@@ -44,9 +47,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     PostCreateComponent,
 
     HeaderComponent,
+    ProductCreateComponent
 
 
-  
+
+
 
   ],
   imports: [

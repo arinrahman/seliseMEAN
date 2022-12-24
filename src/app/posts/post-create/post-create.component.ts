@@ -60,7 +60,8 @@ ngOnInit(){
       price: postData.price,
       desc: postData.desc,
       startDate: postData.startDate,
-      favoriteSeason: postData.favoriteSeason
+      favoriteSeason: postData.favoriteSeason,
+      imageURL: postData.imageURL
 
     };
    }     );
@@ -78,12 +79,12 @@ ngOnInit(){
     }
      if(this.mode==="post-create")
     {
-      this.postsService.addPost(form.value.title,form.value.content, form.value.startDate, form.value.selectedValue, form.value.price, form.value.desc, form.value.selectedOrigin, form.value.favoriteSeason);
+      this.postsService.addPost(form.value.title,form.value.content, form.value.startDate, form.value.selectedValue, form.value.price, form.value.desc, form.value.selectedOrigin, form.value.favoriteSeason, form.value.imageURL);
       alert("You succesfully added a product!")
 
     }
     else{
-      this.postsService.updatePost(this.postId, form.value.title,form.value.content, form.value.startDate, form.value.selectedValue, form.value.price, form.value.desc, form.value.selectedOrigin, form.value.favoriteSeason);
+      this.postsService.updatePost(this.postId, form.value.title,form.value.content, form.value.startDate, form.value.selectedValue, form.value.price, form.value.desc, form.value.selectedOrigin, form.value.favoriteSeason, form.value.imageURL);
       alert("You succesfully editted a product!")
     }
 

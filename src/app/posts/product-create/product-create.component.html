@@ -1,0 +1,21 @@
+
+<h1 class="title">Available Products(Scroll down to see all products in the dashboard)</h1>
+<p *ngIf="posts.length<=0" class="info-text mat-body-1">No products in the list!</p>
+<div style="display: flex; flex-wrap: wrap;">
+  <mat-card class="example-card" *ngFor="let post of posts" style="
+  flex: 0 0 33.333333%;">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title> {{post.title}} </mat-card-title>
+      <mat-card-subtitle style="color: green;">Price: {{post.price}} BDT </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{post.imageURL}}">
+    <mat-card-content>
+      {{post.desc}}
+    </mat-card-content>
+    <mat-card-actions >
+
+      <button mat-raised-button color="primary" >ADD TO CART </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

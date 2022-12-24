@@ -9,6 +9,7 @@ const postSchema =mongoose.Schema({
   desc:{type: String},
   selectedOrigin:{type: String, required: true},
   favoriteSeason:{type: String, required: true},
+  imageURL:{type: String, required: true}
 });
 
 module.exports= mongoose.model('Post', postSchema);

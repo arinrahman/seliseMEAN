@@ -3,7 +3,6 @@ const bodyParser= require("body-parser");
 const mongoose=require("mongoose");
 const Post= require('./models/post');
 mongoose.set('strictQuery', false)
-// NTwBp3y1DjoJrgME
 const app= express();
 mongoose.connect("mongodb+srv://arinrahman:hellokitty29@cluster0.vhdsqie.mongodb.net/node-angular?retryWrites=true&w=majority")
 .then(()=>
@@ -14,10 +13,10 @@ mongoose.connect("mongodb+srv://arinrahman:hellokitty29@cluster0.vhdsqie.mongodb
   console.log("Connection failed.");
 
 });
+
+// app.use
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-
-
 app.use((req, res, next) => {
   res.setHeader(
     'Access-Control-Allow-Origin', '*'
@@ -33,30 +32,29 @@ app.use((req, res, next) => {
   next();
 });
 
+
+//app.post
 app.post("/api/posts", (req,res,next)=>
 {
   const post= new Post({
-
-    title: req.body.title,
+   title: req.body.title,
     content: req.body.content,
     startDate: req.body.startDate,
     selectedValue: req.body.selectedValue,
     price: req.body.price,
     desc: req.body.desc,
     selectedOrigin: req.body.selectedOrigin,
-    favoriteSeason: req.body.favoriteSeason
-
-
+    favoriteSeason: req.body.favoriteSeason,
+    imageURL: req.body.imageURL
   });
   post.save(),then(result=>{res.status(201).json({
     message:"post added succesfully",
     postId:createdPost._id
-
-
   });
 });
-
 });
+
+//app.get
 
 app.get('/api/posts',(req,res,next)=>
 { Post.find()
@@ -70,11 +68,9 @@ app.get('/api/posts',(req,res,next)=>
     );
 
   });
-
-
-
-
 });
+
+//app.delete
 
 app.delete("/api/posts/:id", (req,res,next)=>
 {
@@ -85,6 +81,7 @@ app.delete("/api/posts/:id", (req,res,next)=>
 
 });
 
+//app.put
 app.put("/api/posts/:id", (req,res,next)=>{
   const post=new Post({
     _id: req.body.id,
@@ -95,10 +92,8 @@ app.put("/api/posts/:id", (req,res,next)=>{
     selectedOrigin: req.body.selectedOrigin,
     price: req.body.price,
     desc: req.body.desc,
-    favoriteSeason: req.body.favoriteSeason
-
-
-
+    favoriteSeason: req.body.favoriteSeason,
+    imageURL: req.body.imageURL
   });
   Post.updateOne({_id: req.params.id},post).then(result=>
     {
@@ -106,6 +101,8 @@ app.put("/api/posts/:id", (req,res,next)=>{
       res.status(200).json({message:"Update succesfull!"});
     })
 });
+
+//app.get
 app.get("/api/posts/:id", (req,res,next)=>{
   Post.findById(req.params.id).then(
     post=>{
@@ -120,4 +117,6 @@ app.get("/api/posts/:id", (req,res,next)=>{
     }
   )
 });
+
+//end
 module.exports= app;
