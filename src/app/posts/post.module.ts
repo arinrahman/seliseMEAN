@@ -9,4 +9,5 @@ export interface Post{
   selectedOrigin:string;
   favoriteSeason:string;
   imageURL: string;
+  quantity: number;
 }

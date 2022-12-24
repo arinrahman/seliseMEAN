@@ -10,12 +10,23 @@
       <mat-card-subtitle style="color: green;">Price: {{post.price}} BDT </mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="{{post.imageURL}}">
+    <div style="display: flex; justify-content: space-between; padding: 22px;">
+      <p  style="color: red; font-size: 14px;">Quantity left in stock:</p>
+      <p  style="color: red; font-size: 14px;">{{post.quantity}} </p>
+      <p  style="color: green; font-size: 14px;">Quantity added to cart:</p>
+      <p  style="color: green; font-size: 14px;"> </p></div>
+
     <mat-card-content>
       {{post.desc}}
     </mat-card-content>
-    <mat-card-actions >
 
-      <button mat-raised-button color="primary" >ADD TO CART </button>
+    <mat-card-actions>
+      <div style="display: flex; justify-content: space-between; padding: 22px;">
+        <button mat-raised-button color="warn">-</button>
+        <button mat-raised-button color="primary">+</button>
+      </div>
     </mat-card-actions>
+
+
   </mat-card>
 </div>

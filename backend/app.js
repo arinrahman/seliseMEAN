@@ -45,7 +45,9 @@ app.post("/api/posts", (req,res,next)=>
     desc: req.body.desc,
     selectedOrigin: req.body.selectedOrigin,
     favoriteSeason: req.body.favoriteSeason,
-    imageURL: req.body.imageURL
+    imageURL: req.body.imageURL,
+    quantity: req.body.quantity
+
   });
   post.save(),then(result=>{res.status(201).json({
     message:"post added succesfully",
@@ -93,7 +95,8 @@ app.put("/api/posts/:id", (req,res,next)=>{
     price: req.body.price,
     desc: req.body.desc,
     favoriteSeason: req.body.favoriteSeason,
-    imageURL: req.body.imageURL
+    imageURL: req.body.imageURL,
+    quantity: req.body.quantity
   });
   Post.updateOne({_id: req.params.id},post).then(result=>
     {

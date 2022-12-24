@@ -8,10 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import{MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-
 import {MatToolbarModule} from '@angular/material/toolbar';
 import{MatExpansionModule} from '@angular/material/expansion';
 import { PostListComponent } from './posts/post-list/post-list.component.ts/post-list.component';
@@ -24,35 +22,19 @@ import {MatSortModule} from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HeaderComponent } from './header/header.component';
-
 import { ReactiveFormsModule } from '@angular/forms';
 import{ProductCreateComponent} from './posts/product-create/product-create.component';
-
-
-
-
-
-
-
-
-
-
-
-
+import{ProductListComponent} from './posts/product-list/product-list.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostListComponent,
     PostCreateComponent,
-
     HeaderComponent,
-    ProductCreateComponent
-
-
-
-
-
+    ProductCreateComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
@@ -74,14 +56,8 @@ import{ProductCreateComponent} from './posts/product-create/product-create.compo
     MatSortModule,
     HttpClientModule,
     MatButtonToggleModule,
-    ReactiveFormsModule
-
-
-
-
-
-
-
+    ReactiveFormsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -27,7 +27,8 @@ constructor(private http: HttpClient){}
           desc: post.desc,
           selectedOrigin:post.selectedOrigin,
           favoriteSeason: post.favoriteSeason,
-          imageURL: post.imageURL
+          imageURL: post.imageURL,
+          quantity: post.quantity
         };
       });
     }))
@@ -44,8 +45,8 @@ constructor(private http: HttpClient){}
   }
 
   //addPost
-  addPost(title:string, content:string, startDate: Date, selectedValue:string, price:number, desc:string, selectedOrigin:string, favoriteSeason:string, imageURL:string){
-    const post: Post={id: null,title:title,content:content, startDate:startDate, selectedValue:selectedValue, price:price, desc:desc, selectedOrigin:selectedOrigin, favoriteSeason:favoriteSeason, imageURL:imageURL};
+  addPost(title:string, content:string, startDate: Date, selectedValue:string, price:number, desc:string, selectedOrigin:string, favoriteSeason:string, imageURL:string,  quantity:number){
+    const post: Post={id: null,title:title,content:content, startDate:startDate, selectedValue:selectedValue, price:price, desc:desc, selectedOrigin:selectedOrigin, favoriteSeason:favoriteSeason, imageURL:imageURL, quantity:quantity};
     this.http.post<{message:string, postId: string}>("http://localhost:3000/api/posts",post)
     .subscribe(( responseData)=>
     {
@@ -68,7 +69,7 @@ constructor(private http: HttpClient){}
   }
  //getPost
   getPost(id:string){
-    return this.http.get<{_id:string, title:string, content:string, startDate: Date, selectedValue:string, price:number, desc:string, selectedOrigin:string, favoriteSeason:string, imageURL:string}>("http://localhost:3000/api/posts/"+ id);
+    return this.http.get<{_id:string, title:string, content:string, startDate: Date, selectedValue:string, price:number, desc:string, selectedOrigin:string, favoriteSeason:string, imageURL:string, quantity: number}>("http://localhost:3000/api/posts/"+ id);
   }
   //updatePost
   updatePost(  id:string,
@@ -80,7 +81,8 @@ constructor(private http: HttpClient){}
     desc: string,
     selectedOrigin:string,
     favoriteSeason:string,
-    imageURL: string){
+    imageURL: string,
+    quantity: number){
 
       const post: Post={
         id:id,
@@ -92,7 +94,8 @@ constructor(private http: HttpClient){}
         selectedOrigin: selectedOrigin,
         desc:desc,
         favoriteSeason:favoriteSeason,
-        imageURL: imageURL
+        imageURL: imageURL,
+        quantity: quantity
 
       };
       this.http.put("http://localhost:3000/api/posts/"+id,post)
