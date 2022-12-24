@@ -2,23 +2,22 @@ import { Injectable } from "@angular/core";
 import { HttpClient} from '@angular/common/http';
 import { Subject } from "rxjs";
 import{map} from 'rxjs/operators'
-
 import { Post } from "./post.module";
 import { response } from "express";
 @Injectable({providedIn:'root'})
 export class PostsService
 {
-  private posts: Post[]= [];
-  private postUpdated= new Subject<Post[]>();
+private posts: Post[]= [];
+private postUpdated= new Subject<Post[]>();
 
-  constructor(private http: HttpClient){}
+constructor(private http: HttpClient){}
+//getPosts
 
   getPosts(){
     this.http.get<{message:string, posts:any}>('http://localhost:3000/api/posts')
     .pipe(map((postData)=>{
       return postData.posts.map(post=>{
         return{
-
           id:post._id,
           title: post.title,
           content: post.content,
@@ -28,10 +27,8 @@ export class PostsService
           desc: post.desc,
           selectedOrigin:post.selectedOrigin,
           favoriteSeason: post.favoriteSeason
-
         };
       });
-
     }))
     .subscribe((transformedPosts)=>{
       this.posts=transformedPosts;
@@ -39,10 +36,13 @@ export class PostsService
     });
 
   }
+
+  //getPostUpdateListener
   getPostUpdateListener(){
     return this.postUpdated.asObservable();
-
   }
+
+  //addPost
   addPost(title:string, content:string, startDate: Date, selectedValue:string, price:number, desc:string, selectedOrigin:string, favoriteSeason:string){
     const post: Post={id: null,title:title,content:content, startDate:startDate, selectedValue:selectedValue, price:price, desc:desc, selectedOrigin:selectedOrigin, favoriteSeason:favoriteSeason};
     this.http.post<{message:string, postId: string}>("http://localhost:3000/api/posts",post)
@@ -53,9 +53,8 @@ export class PostsService
      this.posts.push(post);
      this.postUpdated.next([...this.posts]);
     });
-
-
   }
+//deletePost
   deletePost(postId:string){
     this.http.delete("http://localhost:3000/api/posts/"+ postId)
     .subscribe(
@@ -66,9 +65,11 @@ export class PostsService
   }
     );
   }
+ //getPost
   getPost(id:string){
     return this.http.get<{_id:string, title:string, content:string, startDate: Date, selectedValue:string, price:number, desc:string, selectedOrigin:string, favoriteSeason:string}>("http://localhost:3000/api/posts/"+ id);
   }
+  //updatePost
   updatePost(  id:string,
     title: string,
     content: string,
@@ -106,4 +107,5 @@ export class PostsService
       );
 
   }
+//end
 }

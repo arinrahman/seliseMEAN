@@ -1,10 +1,8 @@
 <p *ngIf="posts.length<=0" class="info-text mat-body-1">No products added yet!</p>
 <div class="mat-elevation-z8"   style="background-color: rgb(127, 159, 255);">
+<button mat-raised-button color="accent" routerLink="/post-create" >Add Product</button>
 
-
-    <button mat-raised-button color="accent" routerLink="/post-create" >Add Product</button>
-
-
+<!--Table starts-->
   <table mat-table [dataSource]="posts" matSort style="background-color: rgb(215, 214, 246);">
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</th>
@@ -38,9 +36,6 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Origin</th>
       <td mat-cell *matCellDef="let post" >{{post.selectedOrigin}}</td>
     </ng-container>
-
-
-
     <ng-container matColumnDef="selectedDelete">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete Product</th>
       <td mat-cell *matCellDef="let post" ><button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button></td>
@@ -49,12 +44,11 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit Product</th>
       <td mat-cell *matCellDef="let post" ><a mat-button color="primary" [routerLink] = "['/edit',post.id]" >EDIT</a></td>
     </ng-container>
-
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let post; columns: displayedColumns;"></tr>
-
-      </table>
+    </table>
+    <!--Table ends-->
+    <!--Paginator-->
       <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]=[10,15,20,25] (page)="onChangedPage($event)"></mat-paginator>
 
 

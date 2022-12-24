@@ -5,11 +5,6 @@ import{Subscription} from 'rxjs';
 import { MatPaginator, PageEvent} from "@angular/material/paginator";
 import { MatSort} from "@angular/material/sort";
 
-
-
-
-
-
 @Component(
   {
     selector:'app-post-list',
@@ -18,19 +13,7 @@ import { MatSort} from "@angular/material/sort";
   }
 )
 export class PostListComponent implements OnInit, OnDestroy{
-  /**
-   posts=[
-  {title:'First Title', content: 'First Content'},
-  {title:'First Title', content: 'First Content'},
-  {title:'First Title', content: 'First Content'}
-];
-   */
-
-
-
 displayedColumns: string[] = ['title', 'content', 'selectedValue', 'price', 'desc', 'favoriteSeason', 'startDate', 'selectedOrigin', 'selectedDelete', 'selectedEdit'];
-
-
 posts: Post[]=[];
 totalPosts=50;
 postsPerPage=10;
@@ -39,6 +22,7 @@ private postsSub: Subscription;
 constructor(public postsService: PostsService){
 
 }
+// ngOnInit
 ngOnInit(){
   this.postsService.getPosts();
   this.postsSub= this.postsService.getPostUpdateListener()
@@ -46,23 +30,21 @@ ngOnInit(){
   {
     this.posts= posts;
   });
-
-
-
-
 }
+
+//onDelete
 onDelete(postId:string){
   this.postsService.deletePost(postId);
 
 }
+//ngOnDestroy
 ngOnDestroy(): void {
   this.postsSub.unsubscribe();
-
 }
+
+//onChangedPage
 onChangedPage(pageData:PageEvent){
   console.log(pageData);
 }
-
-
-
+//end
 }

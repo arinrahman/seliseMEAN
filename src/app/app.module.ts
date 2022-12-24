@@ -24,7 +24,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HeaderComponent } from './header/header.component';
-import { AllComponent } from './all/all.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -46,7 +46,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
 
 
-    AllComponent
+  
 
   ],
   imports: [
@@ -69,7 +69,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSortModule,
     HttpClientModule,
     MatButtonToggleModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
 
 
 
