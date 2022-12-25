@@ -13,11 +13,18 @@ import { MatSort} from "@angular/material/sort";
   }
 )
 export class PostListComponent implements OnInit, OnDestroy{
-displayedColumns: string[] = ['title', 'content', 'selectedValue', 'price', 'desc', 'favoriteSeason', 'startDate', 'selectedOrigin', 'selectedDelete', 'selectedEdit', 'imageURL'];
+displayedColumns: string[] = [
+  'title',
+  'content',
+  'selectedValue',
+   'price', 'desc',
+    'favoriteSeason', 'startDate',
+    'selectedOrigin', 'selectedDelete',
+     'selectedEdit', 'imageURL'];
 posts: Post[]=[];
 totalPosts=50;
 postsPerPage=10;
-private postsSub: Subscription;
+private postsSub: Subscription; //did not add
 
 constructor(public postsService: PostsService){
 

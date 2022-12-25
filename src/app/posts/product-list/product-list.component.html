@@ -1,0 +1,38 @@
+<p *ngIf="userCartData.length<=0 " class="info-text mat-body-1">Cart data emty!</p>
+<div class="mat-elevation-z8"   style="background-color: rgb(127, 159, 255);">
+
+<!--Table starts-->
+  <table mat-table [dataSource]="userCartData" matSort style="background-color: rgb(215, 214, 246);">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</th>
+      <td mat-cell *matCellDef="let cart" > {{cart.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="selectedValue">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Category</th>
+      <td mat-cell *matCellDef="let cart" >{{cart.selectedValue}}</td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Price</th>
+      <td mat-cell *matCellDef="let cart" >{{cart.price}}</td>
+    </ng-container>
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+        <td mat-cell *matCellDef="let cart" >{{cart.quantity}} </td>
+      </ng-container>
+    <ng-container matColumnDef="desc">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Description</th>
+      <td mat-cell *matCellDef="let cart" >{{cart.desc}}</td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let cart; columns: displayedColumns;"></tr>
+    </table>
+    <!--Table ends-->
+    <!--Paginator-->
+
+
+
+</div>

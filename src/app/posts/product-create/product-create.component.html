@@ -12,9 +12,8 @@
     <img mat-card-image src="{{post.imageURL}}">
     <div style="display: flex; justify-content: space-between; padding: 22px;">
       <p  style="color: red; font-size: 14px;">Quantity left in stock:</p>
-      <p  style="color: red; font-size: 14px;">{{post.quantity}} </p>
-      <p  style="color: green; font-size: 14px;">Quantity added to cart:</p>
-      <p  style="color: green; font-size: 14px;"> </p></div>
+      <p  style="color: red; font-size: 14px;">{{post.quantity}}</p>
+     </div>
 
     <mat-card-content>
       {{post.desc}}
@@ -22,9 +21,10 @@
 
     <mat-card-actions>
       <div style="display: flex; justify-content: space-between; padding: 22px;">
-        <button mat-raised-button color="warn">-</button>
-        <button mat-raised-button color="primary">+</button>
-      </div>
+        <button mat-raised-button color="warn" (click)="post.quantity==0 ? return: post.quantity=post.quantity - 1">-</button>&nbsp;
+        <button mat-raised-button color="primary" (click)="post.quantity=post.quantity + 1">+</button>
+      </div><br>
+      <button mat-raised-button color="primary" (click)="post.quantity===0? disable:post.quantity=post.quantity-1;addToCart(post);">Add to Cart</button>
     </mat-card-actions>
 
 

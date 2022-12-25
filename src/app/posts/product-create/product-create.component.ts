@@ -1,9 +1,12 @@
-import { Component, OnDestroy, OnInit} from "@angular/core";
+import { Component, NgModule, OnDestroy, OnInit} from "@angular/core";
 import { Post } from "../post.module";
 import { PostsService } from "../../posts/posts.service";
 import{Subscription} from 'rxjs';
 import { MatPaginator, PageEvent} from "@angular/material/paginator";
 import { MatSort} from "@angular/material/sort";
+import { Router } from '@angular/router';
+import { UserService } from "src/app/user.service";
+import { NgModel } from "@angular/forms";
 
 
 @Component({
@@ -15,8 +18,9 @@ export class ProductCreateComponent implements OnInit, OnDestroy{
   title = 'my-project';
   posts: Post[]=[];
   private postsSub: Subscription;
-
-constructor(public postsService: PostsService){
+  counter: number=0;
+  cartItems=[]
+constructor(public postsService: PostsService,private router: Router,private cartService:UserService){
 
 }
 // ngOnInit
@@ -36,6 +40,7 @@ onDelete(postId:string){
 }
 //ngOnDestroy
 ngOnDestroy(): void {
+
   this.postsSub.unsubscribe();
 }
 
@@ -44,6 +49,16 @@ onChangedPage(pageData:PageEvent){
   console.log(pageData);
 }
 //end
+// Add to cart
 
+addToCart(cartItem){
+localStorage.setItem('userCart',JSON.stringify(cartItem));
+  this.cartService.addTocart(cartItem)
+this.router.navigate(["/product-list"]);
+
+}
+updatestock(){
+
+}
 
 }

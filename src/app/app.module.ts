@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import{ProductCreateComponent} from './posts/product-create/product-create.component';
 import{ProductListComponent} from './posts/product-list/product-list.component';
 import {MatListModule} from '@angular/material/list';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,9 @@ import {MatListModule} from '@angular/material/list';
     HeaderComponent,
     ProductCreateComponent,
     ProductListComponent
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -57,9 +61,11 @@ import {MatListModule} from '@angular/material/list';
     HttpClientModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
-    MatListModule
+    MatListModule,
+
+
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
