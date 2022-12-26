@@ -13,6 +13,7 @@ import { MatSort} from "@angular/material/sort";
   }
 )
 export class PostListComponent implements OnInit, OnDestroy{
+  total: number = 0;
 displayedColumns: string[] = [
   'title',
   'content',

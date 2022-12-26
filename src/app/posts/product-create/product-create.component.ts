@@ -25,7 +25,7 @@ constructor(public postsService: PostsService,private router: Router,private car
 }
 // ngOnInit
 ngOnInit(){
-  this.postsService.getPosts();
+  this.postsService.getPostss();
   this.postsSub= this.postsService.getPostUpdateListener()
   .subscribe((posts: Post[])=>
   {

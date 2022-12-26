@@ -28,6 +28,8 @@ import{ProductListComponent} from './posts/product-list/product-list.component';
 import {MatListModule} from '@angular/material/list';
 import { UserService } from './user.service';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +64,7 @@ import { UserService } from './user.service';
     MatButtonToggleModule,
     ReactiveFormsModule,
     MatListModule,
+
 
 
   ],

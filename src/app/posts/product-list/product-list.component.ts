@@ -16,16 +16,17 @@ export class ProductListComponent implements OnInit, OnDestroy{
     'title',
      'selectedValue',
       'price',
-      'desc'];
+      'desc',
+    'quantity'];
 
 totalPosts=50;
 postsPerPage=10;
-
+total:number;
   userCartData:any;
   constructor(private cartservice:UserService){}
   ngOnInit(){
+    this.total= this.cartservice.getTotalPrice()
     this.userCartData=this.cartservice.getCart()
-
   }
   ngOnDestroy(): void {
   }

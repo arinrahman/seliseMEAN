@@ -1,4 +1,3 @@
-
 <h1 class="title">Available Products(Scroll down to see all products in the dashboard)</h1>
 <p *ngIf="posts.length<=0" class="info-text mat-body-1">No products in the list!</p>
 <div style="display: flex; flex-wrap: wrap;">
@@ -11,7 +10,7 @@
     </mat-card-header>
     <img mat-card-image src="{{post.imageURL}}">
     <div style="display: flex; justify-content: space-between; padding: 22px;">
-      <p  style="color: red; font-size: 14px;">Quantity left in stock:</p>
+      <p  style="color: red; font-size: 14px;">Quantity added to cart:</p>
       <p  style="color: red; font-size: 14px;">{{post.quantity}}</p>
      </div>
 
@@ -24,7 +23,7 @@
         <button mat-raised-button color="warn" (click)="post.quantity==0 ? return: post.quantity=post.quantity - 1">-</button>&nbsp;
         <button mat-raised-button color="primary" (click)="post.quantity=post.quantity + 1">+</button>
       </div><br>
-      <button mat-raised-button color="primary" (click)="post.quantity===0? disable:post.quantity=post.quantity-1;addToCart(post);">Add to Cart</button>
+      <button mat-raised-button color="primary" (click)="post.quantity===0?disable :addToCart(post);">Add to Cart</button>
     </mat-card-actions>
 
 

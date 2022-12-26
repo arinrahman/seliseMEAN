@@ -39,6 +39,32 @@ constructor(private http: HttpClient){}
     });
 
   }
+  getPostss(){
+   
+    this.http.get<{message:string, posts:any}>('http://localhost:3000/api/posts')
+    .pipe(map((postData)=>{
+      return postData.posts.map(post=>{
+        return{
+          id:post._id,
+          title: post.title,
+          content: post.content,
+          startDate: post.startDate,
+          selectedValue: post.selectedValue,
+          price:post.price,
+          desc: post.desc,
+          selectedOrigin:post.selectedOrigin,
+          favoriteSeason: post.favoriteSeason,
+          imageURL: post.imageURL,
+          quantity: post.quantity
+        };
+      });
+    }))
+    .subscribe((transformedPosts)=>{
+      this.posts=transformedPosts;
+        this.postUpdated.next([...this.posts]);
+    });
+
+  }
 
   //getPostUpdateListener
   getPostUpdateListener(){
