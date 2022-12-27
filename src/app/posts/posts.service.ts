@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpParams} from '@angular/common/http';
 import { Subject } from "rxjs";
 import{map} from 'rxjs/operators'
 import { Post } from "./post.module";
@@ -12,11 +12,15 @@ private posts: Post[]= [];
 private postUpdated= new Subject<Post[]>();
 
 constructor(private http: HttpClient, private router: Router){}
-//getPosts
+//getPost
+private apiUrl = 'http://localhost:3000/api/posts';
 
   getPosts(postsPerPage:number, currentPage: number){
     const queryParams=`?pagesize=$(postsPerPage)&page=$(currentPage)`;
-    this.http.get<{message:string, posts:any}>('http://localhost:3000/api/posts')
+    this.http.get<{message:string, posts:any[]}>(this.apiUrl, {
+      params: new HttpParams().set('pagesize', postsPerPage.toString())
+        .append('page', currentPage.toString())
+    })
     .pipe(map((postData)=>{
       return postData.posts.map(post=>{
         return{

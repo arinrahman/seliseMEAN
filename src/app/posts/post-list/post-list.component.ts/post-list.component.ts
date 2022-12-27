@@ -23,8 +23,10 @@ displayedColumns: string[] = [
     'selectedOrigin', 'selectedDelete',
      'selectedEdit', 'imageURL'];
 posts: Post[]=[];
-totalPosts=50;
-postsPerPage=10;
+totalPosts=10;
+postsPerPage=2;
+pageSizeOptions=[1,2,5,10];
+currentPage=1;
 private postsSub: Subscription; //did not add
 
 constructor(public postsService: PostsService){
@@ -32,7 +34,7 @@ constructor(public postsService: PostsService){
 }
 // ngOnInit
 ngOnInit(){
-  this.postsService.getPosts(this.postsPerPage,1);
+  this.postsService.getPosts(this.postsPerPage,this.currentPage);
   this.postsSub= this.postsService.getPostUpdateListener()
   .subscribe((posts: Post[])=>
   {
@@ -48,11 +50,14 @@ onDelete(postId:string){
 //ngOnDestroy
 ngOnDestroy(): void {
   this.postsSub.unsubscribe();
+
 }
 
 //onChangedPage
 onChangedPage(pageData:PageEvent){
-  console.log(pageData);
+  this.currentPage= pageData.pageIndex+1;
+  this.postsPerPage= pageData.pageSize;
+  this.postsService.getPosts(this.postsPerPage,this.currentPage);
 }
 //end
 }
