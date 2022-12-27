@@ -27,6 +27,7 @@ import{ProductCreateComponent} from './posts/product-create/product-create.compo
 import{ProductListComponent} from './posts/product-list/product-list.component';
 import {MatListModule} from '@angular/material/list';
 import { UserService } from './user.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -64,6 +65,7 @@ import { UserService } from './user.service';
     MatButtonToggleModule,
     ReactiveFormsModule,
     MatListModule,
+    MatProgressSpinnerModule
 
 
 

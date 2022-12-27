@@ -28,6 +28,7 @@ export class PostCreateComponent implements OnInit{
   private mode='post-create';
   private postId:string;
   post: Post;
+  isLoading= false;
 
   seasons: string[] = ['Day', 'Night'];
 
@@ -49,8 +50,9 @@ ngOnInit(){
     if(paramMap.has('postId')){
       this.mode='edit';
       this.postId = paramMap.get('postId');
+      this.isLoading=true;
       this.postsService.getPost(this.postId).subscribe(postData=>
-   {
+   { this.isLoading=false;
     this.post={
       id: postData._id,
       title: postData.title,
@@ -78,6 +80,7 @@ ngOnInit(){
     if(form.invalid){
       return;
     }
+    
      if(this.mode==="post-create")
     {
       this.postsService.addPost(form.value.title,form.value.content, form.value.startDate, form.value.selectedValue, form.value.price, form.value.desc, form.value.selectedOrigin, form.value.favoriteSeason, form.value.imageURL, form.value.quantity);

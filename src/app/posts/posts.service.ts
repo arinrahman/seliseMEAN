@@ -4,13 +4,14 @@ import { Subject } from "rxjs";
 import{map} from 'rxjs/operators'
 import { Post } from "./post.module";
 import { response } from "express";
+import { Router,ActivatedRoute } from "@angular/router";
 @Injectable({providedIn:'root'})
 export class PostsService
 {
 private posts: Post[]= [];
 private postUpdated= new Subject<Post[]>();
 
-constructor(private http: HttpClient){}
+constructor(private http: HttpClient, private router: Router){}
 //getPosts
 
   getPosts(postsPerPage:number, currentPage: number){
@@ -40,7 +41,7 @@ constructor(private http: HttpClient){}
 
   }
   getPostss(){
-   
+
     this.http.get<{message:string, posts:any}>('http://localhost:3000/api/posts')
     .pipe(map((postData)=>{
       return postData.posts.map(post=>{
@@ -81,6 +82,7 @@ constructor(private http: HttpClient){}
     post.id= id;
      this.posts.push(post);
      this.postUpdated.next([...this.posts]);
+     this.router.navigate(["/"]);
     });
   }
 //deletePost
@@ -135,6 +137,7 @@ constructor(private http: HttpClient){}
           updatedPosts[oldPostIndex]= post;
           this.posts=updatedPosts;
           this.postUpdated.next([...this.posts]);
+          this.router.navigate(["/"]);
 
         }
       );

@@ -33,11 +33,9 @@ router.get('',(req,res,next)=>
   if(pageSize && currentPage){
     postQuery.skip(pageSize*(currentPage+1))
     .limit(pageSize);
-
   }
   postQuery.find()
   .then(documents=>{
-
     res.status(200).json(
       {
         message: "post fetched success",
