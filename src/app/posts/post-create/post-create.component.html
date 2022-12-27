@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <form (submit)="onSavePost(postForm)" #postForm="ngForm" *ngIf="!isLoading">
+    <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!isLoading">
       <div style="display: flex; justify-content: space-between; background-color: rgb(253, 208, 216)">
         <mat-label style="color: brown;font-size: 22px; ;">Form For Adding New Products to Product Data Table</mat-label>
       <button mat-raised-button color="warn" routerLink="/post-list" >Exit</button>
@@ -13,15 +13,11 @@
             <mat-label>Product Name</mat-label>
             <input matInput
              type="text"
-             name="title"
-              [ngModel]="post?.title"
-              required
-              minlength="3"
-              maxlength="50"
-              #title="ngModel"
-              >
+
+             formControlName="title"
+             >
               <mat-error
-              *ngIf="title.invalid"
+              *ngIf="form.get('title').invalid"
               >Enter Product Name
             </mat-error>
           </mat-form-field>
@@ -32,53 +28,41 @@
             <textarea
             matInput
             rows="4"
-            name="content"
-            [ngModel]="post?.content"
-            required
-            #content="ngModel"
-            minlength="3"
-            maxlength="50"
+
+            formControlName="content"
             >
             </textarea>
             <mat-error
-            *ngIf="content.invalid">
+            *ngIf="form.get('content').invalid">
             Enter Product Code
           </mat-error>
           </mat-form-field>
           <br>
-          <!--Product Category-->
-          <mat-form-field>
+           <!--Product Category-->
+           <mat-form-field>
             <mat-label>Product Category</mat-label>
-            <mat-select
-            [ngModel]="post?.selectedValue"
-            #selectedValue="ngModel"
-            name="selectedValue"
-            required>
-            <mat-option
-            *ngFor="let food of foods"
-            [value]="food.value">
-            {{food.viewValue}}
-          </mat-option>
+            <mat-select formControlName="selectedValue">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
             </mat-select>
+
             <mat-error
-            *ngIf="selectedValue.invalid">
-            Enter Product Category
-          </mat-error>
-        </mat-form-field>
+            *ngIf="form.get('selectedValue').invalid">
+                  Enter Product Category
+                  </mat-error>
+          </mat-form-field>
           <br>
           <!--Product Price-->
           <mat-form-field>
            <mat-label>Price in BDT</mat-label>
             <input matInput
              type="number"
-             name="price"
-              [ngModel]="post?.price"
-              required
-              #price="ngModel"
-              min="0"
+             formControlName="price"
               >
             <mat-error
-            *ngIf="title.invalid">
+            *ngIf="form.get('price').invalid">
             Enter Product Price
           </mat-error>
           </mat-form-field>
@@ -88,100 +72,75 @@
             <mat-label>Product Description</mat-label>
             <textarea matInput
              rows="4"
-             name="desc"
-             [ngModel]="post?.desc"
-             #desc="ngModel"
-             minlength="3"
-             maxlength="250">
+             formControlName="desc">
             </textarea>
+            <mat-error
+            *ngIf="form.get('desc').invalid">
+            Invalid Character Length
+          </mat-error>
             </mat-form-field>
         </div>
         <!--One Column Ends here-->
           <div>
-
-              <!--IsBestAchieved-->
+            <!--IsBestAchieved-->
               <br>
-                  <mat-label class="best-ach">Is Best Achieved:</mat-label>
-                  <br>
-                  <mat-radio-group
-                  class="example-radio-group"
-                  [ngModel]="post?.favoriteSeason"
-                  #favoriteSeason="ngModel"
-                  name="favoriteSeason" >
-                  <mat-radio-button
-                  class="example-radio-button"
-                  *ngFor="let season of seasons"
-                  [value]="season">
-                  {{season}}
-                  </mat-radio-button>
-                  </mat-radio-group>
-
-
-
-
+              <mat-form-field>
+                <mat-label>Is Best Achieved:</mat-label>
+                <mat-select formControlName="favoriteSeason">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let fav of favs" [value]="fav.value">
+                    {{fav.viewValue}}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                *ngIf="form.get('selectedOrigin').invalid">
+                      Enter Product Origin
+                      </mat-error>
+              </mat-form-field>
             <!--Created Date-->
             <br>
-            <mat-form-field>
-              <input matInput
-              [matDatepicker]="myDatePicker"
-              [ngModel]="post?.startDate"
-              #startDate="ngModel"
-              name="startDate"
-              required>
-              <mat-label>Set Creation Date</mat-label>
+            <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input formControlName="startDate" matInput [matDatepicker]="picker" />
+              <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle
-               [for]="myDatePicker"
-               matSuffix>
-              </mat-datepicker-toggle>
-              <mat-datepicker
-               #myDatePicker>
-              </mat-datepicker>
-              <mat-error
-              *ngIf="startDate.invalid">
-              Enter Product Creation Date
-              </mat-error>
-              </mat-form-field>
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
 
 
              <br>
                    <!--Origin-->
+                   <mat-form-field>
+                    <mat-label>Product Origin</mat-label>
+                    <mat-select formControlName="selectedOrigin">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let origin of origins" [value]="origin.value">
+                        {{origin.viewValue}}
+                      </mat-option>
+                    </mat-select>
 
-      <mat-form-field>
-        <mat-label>Product Origin</mat-label>
-        <mat-select
-        [ngModel]="post?.selectedOrigin"
-        #selectedOrigin="ngModel"
-        name="selectedOrigin"
-        required>
-          <mat-option
-          *ngFor="let place of places"
-          [value]="place.value">
-          {{place.viewValue}}
-        </mat-option>
-        </mat-select>
-        <mat-error
-              *ngIf="selectedOrigin.invalid">
-              Enter Product Origin
-              </mat-error>
-      </mat-form-field>
+                    <mat-error
+                    *ngIf="form.get('selectedOrigin').invalid">
+                          Enter Product Origin
+                          </mat-error>
+                  </mat-form-field>
       <br>
       <!--Image URL-->
       <mat-form-field>
         <mat-label>Image URL</mat-label>
         <input matInput
          type="text"
-         name="imageURL"
-        [ngModel]="post?.imageURL">
+        formControlName="imageURL">
         </mat-form-field>
         <br>
-
-          <mat-form-field>
+        <mat-form-field>
           <mat-label>Default Product Quantity </mat-label>
           <input matInput
           type="number"
-          name="quantity"
-          [ngModel]="post?.quantity"
-          min="0">
+          formControlName="quantity">
           </mat-form-field>
           <br>
           <br>
